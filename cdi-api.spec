@@ -7,7 +7,7 @@
 
 Name:             %{?scl_prefix}%{pkg_name}
 Version:          1.0
-Release:          11%{namedreltag}.11%{?dist}
+Release:          11%{namedreltag}.12%{?dist}
 Summary:          CDI API
 License:          ASL 2.0
 URL:              http://seamframework.org/Weld
@@ -20,20 +20,20 @@ BuildArch:        noarch
 
 BuildRequires:    %{?scl_prefix_java_common}javapackages-tools
 BuildRequires:    %{?scl_prefix_java_common}maven-local
-BuildRequires:    maven30-maven-compiler-plugin
-BuildRequires:    maven30-maven-install-plugin
-BuildRequires:    maven30-maven-jar-plugin
-BuildRequires:    maven30-maven-javadoc-plugin
-BuildRequires:    maven30-maven-surefire-provider-testng
-BuildRequires:    maven30-maven-enforcer-plugin
-BuildRequires:    maven30-testng
-BuildRequires:    maven30-jboss-el-2.2-api
-BuildRequires:    maven30-jboss-interceptors-1.1-api
-BuildRequires:    maven30-jboss-ejb-3.1-api
+BuildRequires:    %{?scl_prefix}maven-compiler-plugin
+BuildRequires:    %{?scl_prefix}maven-install-plugin
+BuildRequires:    %{?scl_prefix}maven-jar-plugin
+BuildRequires:    %{?scl_prefix}maven-javadoc-plugin
+BuildRequires:    %{?scl_prefix}maven-surefire-provider-testng
+BuildRequires:    %{?scl_prefix}maven-enforcer-plugin
+BuildRequires:    %{?scl_prefix}testng
+BuildRequires:    %{?scl_prefix}jboss-el-2.2-api
+BuildRequires:    %{?scl_prefix}jboss-interceptors-1.1-api
+BuildRequires:    %{?scl_prefix}jboss-ejb-3.1-api
 BuildRequires:    %{?scl_prefix_java_common}geronimo-annotation
-BuildRequires:    maven30-geronimo-parent-poms
-BuildRequires:    maven30-weld-parent
-BuildRequires:    maven30-maven-plugin-build-helper
+BuildRequires:    %{?scl_prefix}geronimo-parent-poms
+BuildRequires:    %{?scl_prefix}weld-parent
+BuildRequires:    %{?scl_prefix}maven-plugin-build-helper
 
 %description
 APIs for JSR-299: Contexts and Dependency Injection for Java EE
@@ -46,19 +46,19 @@ This package contains the API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n cdi-api-%{namedversion}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_file : %{pkg_name}
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -68,6 +68,9 @@ set -e -x
 %files javadoc -f .mfiles-javadoc
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0-11.SP4.12
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.0-11.SP4.11
 - maven33 rebuild
 
