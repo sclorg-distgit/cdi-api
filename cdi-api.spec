@@ -7,7 +7,7 @@
 
 Name:             %{?scl_prefix}%{pkg_name}
 Version:          1.0
-Release:          11%{namedreltag}.12%{?dist}
+Release:          11%{namedreltag}.13%{?dist}
 Summary:          CDI API
 License:          ASL 2.0
 URL:              http://seamframework.org/Weld
@@ -19,7 +19,7 @@ Source0:          cdi-api-%{namedversion}.tar.xz
 BuildArch:        noarch
 
 BuildRequires:    %{?scl_prefix_java_common}javapackages-tools
-BuildRequires:    %{?scl_prefix_java_common}maven-local
+BuildRequires:    %{?scl_prefix}maven-local
 BuildRequires:    %{?scl_prefix}maven-compiler-plugin
 BuildRequires:    %{?scl_prefix}maven-install-plugin
 BuildRequires:    %{?scl_prefix}maven-jar-plugin
@@ -68,6 +68,9 @@ set -e -x
 %files javadoc -f .mfiles-javadoc
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.0-11.SP4.13
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0-11.SP4.12
 - maven33 rebuild #2
 
